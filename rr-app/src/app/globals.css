@@ -2,7 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+@layer base {
+  * {
+    @apply text-base;
+  }
+  body {
+    @apply text-base font-robot;
+  }
+}
+
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -24,4 +33,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */

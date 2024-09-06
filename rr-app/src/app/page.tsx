@@ -1,3 +1,7 @@
 export default function Page() {
-  return <h1>Hello World</h1>;
+  return (
+    <div>
+      <h1 className="bg-primary">Hello World</h1>
+    </div>
+  );
 }
