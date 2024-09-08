@@ -1,7 +1,7 @@
-export default function Page() {
-  return (
-    <div>
-      <h1 className="bg-primary">Hello World</h1>
-    </div>
-  );
-}
+import { redirect, RedirectType } from "next/navigation";
+
+const Page = () => {
+  redirect("/Restaurants", RedirectType.replace);
+};
+
+export default Page;
