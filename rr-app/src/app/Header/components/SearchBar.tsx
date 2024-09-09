@@ -1,0 +1,21 @@
+// "use client";
+// import { Input, TextType } from "../../../components/common/Input";
+// import { ChangeEvent, useState } from "react";
+// // import { RestaurantContext } from "@/context/RestaurantContext";
+// export default function SearchBar() {
+//   // const { setSearchValue } = useContext(RestaurantContext);
+//   const [searchValue, setSearchValue] = useState("");
+//   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+//     setSearchValue(event.target.value);
+//   };
+
+//   return (
+//     <Input
+//       textType={TextType.question}
+//       name="question"
+//       className="mr-2 mb-0"
+//       placeholder="Enter restaurant name"
+//       onChange={handleInputChange}
+//     />
+//   );
+// }
