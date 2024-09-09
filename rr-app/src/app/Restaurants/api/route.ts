@@ -1,21 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
 import RestaurantModel from "@/app/models/restaurantModels";
+import connectDB from "@/app/DB/db";
 export async function GET(req: NextRequest) {
+  await connectDB();
   try {
-    const text = req.nextUrl.searchParams !== undefined ? req.nextUrl.searchParams.toString().toUpperCase() : "";
+    const text = req.nextUrl.searchParams ? req.nextUrl.searchParams.toString().toUpperCase() : "";
+    let restaurants;
+
     if (text) {
-      const searchRegex = new RegExp(text, "i"); // Create a case-insensitive regex
-      const restaurants = await RestaurantModel.find({
-        restaurant_name: searchRegex,
-      }); // Assuming you're searching by name
-      NextResponse.json({ message: restaurants }, { status: 200 });
+      const searchRegex = new RegExp(text, "i");
+      restaurants = await RestaurantModel.find({ restaurant_name: searchRegex });
     } else {
-      const restaurants = await RestaurantModel.find();
-      NextResponse.json({ message: restaurants }, { status: 200 });
+      restaurants = await RestaurantModel.find();
     }
+
+    return NextResponse.json({ message: restaurants }, { status: 200 });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
-    NextResponse.json({ message: err.message }, { status: 500 });
+    return NextResponse.json({ message: err.message }, { status: 500 });
   }
 }
