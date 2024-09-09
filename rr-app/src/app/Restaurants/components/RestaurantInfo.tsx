@@ -1,5 +1,5 @@
 import { PartialRestaurantData } from "../types/type";
-import Ratings from "./Ratings";
+import Ratings from "../../../components/Ratings";
 export default function RestaurantInfo({
   restaurant_name,
   restaurant_avg_ratings,
