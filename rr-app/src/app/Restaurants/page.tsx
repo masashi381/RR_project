@@ -1,4 +1,3 @@
-// import { restauratntType } from "./types/type";
 import Restaurants from "./components/Restaurants";
 
 export default async function Page() {
