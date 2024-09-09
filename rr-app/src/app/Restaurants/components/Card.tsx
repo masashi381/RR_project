@@ -1,6 +1,18 @@
 import { useRouter } from "next/navigation";
-export default function Card() {
+import { PartialRestaurantData } from "../types/type";
+import RestaurantInfo from "./RestaurantInfo";
+import Address from "./Address";
+import Tags from "./Tags";
+export default function Card({
+  _id,
+  restaurant_name,
+  restaurant_avg_ratings,
+  restaurant_number_reviews,
+  restaurant_tags,
+  restaurant_add,
+}: PartialRestaurantData) {
   const router = useRouter();
+
   const clickRestaurant = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     console.log("clicked");
