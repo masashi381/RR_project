@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import RestaurantModel from "@/app/models/restaurantModels";
 import connectDB from "@/app/DB/db";
 export async function GET(req: NextRequest) {
-  await connectDB();
+  connectDB();
   try {
     const text = req.nextUrl.searchParams ? req.nextUrl.searchParams.toString().toUpperCase() : "";
     let restaurants;
