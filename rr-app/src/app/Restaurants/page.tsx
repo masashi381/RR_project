@@ -1,14 +1,13 @@
 import Restaurants from "./components/Restaurants";
-
+import axios from "axios";
 export default async function Page() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/Restaurants/api`);
-  const post = await res.json(); // Parse JSON data
+  const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/Restaurants/api`);
 
-  console.log("post", post);
+  console.log("data", res.data);
 
   return (
     <div>
-      <Restaurants post={post.message} />
+      <Restaurants restaurantsData={res.data} />
     </div>
   );
 }

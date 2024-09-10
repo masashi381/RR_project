@@ -4,17 +4,17 @@ import { RestaurantType } from "../types/type";
 import Card from "./Card";
 import Pagination from "@/components/Pagination";
 type PostType = {
-  post: RestaurantType[];
+  restaurantsData: RestaurantType[];
 };
-export default function Restaurants({ post }: PostType) {
-  console.log("post", post);
+export default function Restaurants({ restaurantsData }: PostType) {
+  console.log("restaurants data", restaurantsData);
   const [currentPage, setCurrentPage] = useState(1);
   const [restaurantPerPage] = useState(6);
 
   // logic for pagination
   const indexOfLastRestaurant = currentPage * restaurantPerPage;
   const indexOfFirstRestaurant = indexOfLastRestaurant - restaurantPerPage;
-  const currentRestaurants = post.slice(indexOfFirstRestaurant, indexOfLastRestaurant);
+  const currentRestaurants = restaurantsData.slice(indexOfFirstRestaurant, indexOfLastRestaurant);
   // when click on different page, set to that page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   return (
@@ -42,7 +42,7 @@ export default function Restaurants({ post }: PostType) {
       </div>
       <Pagination
         restaurantsPerPage={restaurantPerPage}
-        totalRestaurants={post.length}
+        totalRestaurants={restaurantsData.length}
         paginate={paginate}
         currentPage={currentPage}
       />
