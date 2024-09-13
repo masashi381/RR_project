@@ -1,12 +1,12 @@
 "use client";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 // import { useCallback, useContext, useEffect } from "react";
 // import { RestaurantContext } from "@/context/RestaurantContext";
 // import axios from "axios";
 
 const HeaderLogo = () => {
-  // const homeRouter = useRouter();
+  const homeRouter = useRouter();
   // const { setRestaurantsData } = useContext(RestaurantContext);
 
   // const getRestaurantsData = useCallback(async () => {
@@ -16,11 +16,11 @@ const HeaderLogo = () => {
   //   setRestaurantsData(res.data);
   // }, [setRestaurantsData]);
 
-  // const clickedHomeHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
-  //   event.preventDefault();
-  //   getRestaurantsData(); // Refetch data when navigating back home
-  //   homeRouter.push("/");
-  // };
+  const clickedHomeHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    // event.preventDefault();
+    // getRestaurantsData(); // Refetch data when navigating back home
+    homeRouter.push("/");
+  };
 
   // useEffect(() => {
   //   getRestaurantsData();

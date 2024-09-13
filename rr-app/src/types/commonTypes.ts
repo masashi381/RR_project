@@ -10,3 +10,16 @@ export type PaginationData = {
   paginate: (pageNumber: number) => void;
   currentPage: number;
 };
+
+// Type for PageContext
+export enum PageStatus {
+  Loading = "Loading",
+  NotFound = "Not Found",
+  Ready = "Ready",
+}
+
+export type PageContextProps = {
+  pageStatus: PageStatus;
+  setPageStatus: (pageStatus: PageStatus) => void;
+  notFound: () => void;
+};
