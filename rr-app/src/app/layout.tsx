@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import AuthProvider from "@/auth/auth_provider";
 import { PageContextProvider } from "@/context/PageContext";
 import { UserContextProvider } from "@/context/UserContext";
+import { RestaurantContextProvider } from "@/context/RestaurantContext";
 import "./globals.css";
+import { Suspense } from "react";
+import { DropDownContextProvider } from "@/context/DropDownContext";
+import { ReviewsContextProvider } from "@/context/ReviewsContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +23,16 @@ export default function RootLayout({
       <body className="h-full">
         <PageContextProvider>
           <UserContextProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <RestaurantContextProvider>
+              {/* Wrap DropDownContextProvider with Suspense */}
+              <Suspense fallback={<div>Loading Dropdown...</div>}>
+                <DropDownContextProvider>
+                  <ReviewsContextProvider>
+                    <AuthProvider>{children}</AuthProvider>
+                  </ReviewsContextProvider>
+                </DropDownContextProvider>
+              </Suspense>
+            </RestaurantContextProvider>
           </UserContextProvider>
         </PageContextProvider>
       </body>
