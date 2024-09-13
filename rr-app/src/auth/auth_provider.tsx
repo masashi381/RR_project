@@ -31,23 +31,22 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (firebaseAccount) {
         setFirebaseAccount(firebaseAccount);
-        setLoginStatus(LoginStatus.LoggedIn);
-        // try {
-        //   const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/Login/api/${firebaseAccount.uid}`);
-        //   console.log("auth provider res", res.data);
 
-        //   if (res.status === 200 && res.data) {
-        //     setUser(res.data);
-        //     setLoginStatus(LoginStatus.LoggedIn);
-        //   } else {
-        //     throw new Error("User not found");
-        //   }
-        // } catch (err) {
-        //   setUser(null);
-        //   setLoginStatus(LoginStatus.SigningUp);
-        // }
+        try {
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/Login/api/${firebaseAccount.uid}`);
+
+          if (res.status === 200 && res.data) {
+            setUser(res.data);
+            setLoginStatus(LoginStatus.LoggedIn);
+          } else {
+            throw new Error("User not found");
+          }
+        } catch (err) {
+          setUser(null);
+          setLoginStatus(LoginStatus.SigningUp);
+        }
       } else {
-        // setUser(null);
+        setUser(null);
         setLoginStatus(LoginStatus.LoggedOut);
       }
     });
