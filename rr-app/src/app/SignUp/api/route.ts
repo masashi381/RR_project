@@ -8,12 +8,15 @@ export async function POST(req: NextRequest) {
   const userInput: UserInput = await req.json();
   const { result, message } = validateUserInput(userInput);
   if (!result) {
-    return NextResponse.json({ message: message }, { status: 500 });
+    return new Response(null, {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   try {
     const user = await createUser(userInput);
-    return NextResponse.json({ message: user }, { status: 200 });
+    return new Response(JSON.stringify(user), { status: 200, headers: { "Content-Type": "application/json" } });
   } catch (err) {
     console.log(err);
   }

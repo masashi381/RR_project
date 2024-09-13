@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import Header from "./Header/components/Header";
+import AuthProvider from "@/auth/auth_provider";
+import { PageContextProvider } from "@/context/PageContext";
+import { UserContextProvider } from "@/context/UserContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,9 +15,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <Header />
-      <body>{children}</body>
+    <html lang="en" className="h-full">
+      <body className="h-full">
+        <PageContextProvider>
+          <UserContextProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </UserContextProvider>
+        </PageContextProvider>
+      </body>
     </html>
   );
 }
