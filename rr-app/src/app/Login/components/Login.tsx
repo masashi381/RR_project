@@ -83,7 +83,7 @@ const Login = () => {
         Log In with Google
       </Button>
       <p className="mb-4">or</p>
-      <Button type={BtnType.submit} className="btn btn-wide" onClick={() => router.push("/signup")}>
+      <Button type={BtnType.submit} className="btn btn-wide" onClick={() => router.push("/SignUp")}>
         Sign Up
       </Button>
     </div>
