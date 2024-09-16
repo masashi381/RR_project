@@ -1,13 +1,13 @@
-import connectDB from "@/app/DB/db";
-import UserModel from "@/app/models/userModels";
+import connectDB from "@/lib/db";
+import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 // import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   connectDB();
-  const userId = req.nextUrl.searchParams.get("_id");
+
   try {
-    const user = await UserModel.findById(userId);
+    const user = await UserModel.find();
     return new Response(JSON.stringify(user), {
       status: 200,
       headers: { "Content-Type": "application/json" },

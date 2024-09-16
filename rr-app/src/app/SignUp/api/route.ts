@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 // import UserModel from "@/app/models/userModels";
 import { validateUserInput, createUser } from "../logic/SignUpLogic";
 import { UserInput } from "../types/type";
-import connectDB from "@/app/DB/db";
+import connectDB from "@/lib/db";
 export async function POST(req: NextRequest) {
   connectDB();
   const userInput: UserInput = await req.json();

@@ -85,7 +85,7 @@ const SignUp = () => {
     });
 
     await axios
-      .post(`${process.env.NEXT_PUBLIC_URL}/SignUp/api/`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_URL}api/users`, formData, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {

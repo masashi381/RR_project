@@ -20,7 +20,7 @@ const Login = () => {
 
   const getUserFromServer = (uid: string) => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL}/api/${uid}`)
+      .get(`${process.env.NEXT_PUBLIC_URL}/api/users/${uid}`)
       .then((res: any) => {
         setUser(res.data);
         setLoginStatus(LoginStatus.LoggedIn);
