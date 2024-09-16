@@ -11,11 +11,10 @@ const Header = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <header className=" bg-primary h-16 flex fixed top-0 w-full z-50">
+    <header className="bg-primary h-16 flex fixed top-0 w-full z-50">
       <HeaderLogo />
-      <div className="text-white">test</div>
-      <div className="flex justify-center items-center">
-        test
+      <div className=" flex justify-center items-center">
+        <p>test</p>
         {/* <SearchBar />
         {user ? (
           <Avatar />
