@@ -28,12 +28,14 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (loginStatus !== LoginStatus.Unknown) {
         return;
       }
+      console.log("firebaseAccount", firebaseAccount?.uid);
 
       if (firebaseAccount) {
         setFirebaseAccount(firebaseAccount);
 
         try {
-          const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/Login/api/${firebaseAccount.uid}`);
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/users/${firebaseAccount.uid}`);
+          console.log("res", res);
 
           if (res.status === 200 && res.data) {
             setUser(res.data);
@@ -42,6 +44,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             throw new Error("User not found");
           }
         } catch (err) {
+          console.log("error", err);
+
           setUser(null);
           setLoginStatus(LoginStatus.SigningUp);
         }

@@ -11,7 +11,7 @@ export function ReviewsContextProvider({ children }: { children: ReactNode }) {
 
   const fetchReviews = useCallback(async (restaurantId: string) => {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/restaurants/reviews/${restaurantId}`);
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/reviews/${restaurantId}`);
       setAllReviews(res.data);
     } catch (error) {
       console.error("Error fetching reviews", error);

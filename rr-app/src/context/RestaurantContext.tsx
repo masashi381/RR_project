@@ -26,10 +26,10 @@ export function RestaurantContextProvider({ children }: { children: ReactNode })
     const getRestaurantsData = async () => {
       try {
         if (searchValue) {
-          const searchRes = await axios.get(`${process.env.NEXT_PUBLIC_URL}/Restaurants/api/?text=` + searchValue);
+          const searchRes = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/restaurants/?text=` + searchValue);
           setRestaurantsData(searchRes.data);
         } else {
-          const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/Restaurants/api`);
+          const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/restaurants`);
           setRestaurantsData(res.data);
         }
       } catch (error) {
