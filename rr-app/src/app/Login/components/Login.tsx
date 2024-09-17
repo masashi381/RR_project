@@ -22,6 +22,8 @@ const Login = () => {
     axios
       .get(`${process.env.NEXT_PUBLIC_URL}/api/users/${uid}`)
       .then((res: any) => {
+        console.log("get user", res.data);
+
         setUser(res.data);
         setLoginStatus(LoginStatus.LoggedIn);
         router.replace("/Restaurants");

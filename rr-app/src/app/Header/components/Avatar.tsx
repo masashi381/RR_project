@@ -28,7 +28,7 @@ export default function Avatar() {
     setActiveTab(tabName);
     // Clear allReviews when navigating to "My Reviews" page
     setAllReviews([]);
-    router.push(`/users?tab=${tabName}`);
+    router.push(`/Users?tab=${tabName}`);
     if (dropDownRef.current) {
       dropDownRef.current.removeAttribute("open");
     }

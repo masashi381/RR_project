@@ -10,12 +10,13 @@ const Header = () => {
   const router = useRouter();
   const { user } = useContext(UserContext);
 
+  console.log("header user", user);
+
   return (
     <header className="bg-primary h-16 flex fixed top-0 w-full z-50">
-      <HeaderLogo />
+      {/* <HeaderLogo />
       <div className=" flex justify-center items-center">
-        <p>test</p>
-        {/* <SearchBar />
+        <SearchBar />
         {user ? (
           <Avatar />
         ) : (
@@ -23,7 +24,7 @@ const Header = () => {
             Log In
           </Button>
         )} */}
-      </div>
+      {/* </div> */}
     </header>
   );
 };

@@ -71,11 +71,11 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       else if (loginStatus === LoginStatus.LoggedIn) {
         if (user) {
           if (!(page.limitation === Limitation.None || page.limitation === Limitation.LoggedIn)) {
-            return { isAllowed: false, redirection: "/restaurants" };
+            return { isAllowed: false, redirection: "/Restaurants" };
           }
         } else {
           console.error("User is logged in but the data doesn't exist");
-          return { isAllowed: false, redirection: "/restaurants" };
+          return { isAllowed: false, redirection: "/Restaurants" };
         }
       }
       // If the user is not logged in
@@ -83,7 +83,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         // Give permission only to allowed pages
         if (page.limitation !== Limitation.None) {
           // Go to the login page, but don't redirect from sign up page
-          if (pathName !== "/signup" && pathName !== "/login") {
+          if (pathName !== "/SignUp" && pathName !== "/Login") {
             return { isAllowed: false, redirection: "/" };
           }
         }
@@ -93,8 +93,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       else if (loginStatus === LoginStatus.SigningUp) {
         // Go to the sign up page, but don't redirect from sign up page
 
-        if (pathName !== "/signup") {
-          return { isAllowed: false, redirection: "/signup" };
+        if (pathName !== "/SignUp") {
+          return { isAllowed: false, redirection: "/SignUp" };
         }
       }
 
@@ -116,7 +116,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   }, [pathName, loginStatus, setPageStatus]);
 
   const isHeaderReady = (): boolean => {
-    if (pathName.length > 0 && pathName !== "/login" && pathName !== "/signup" && pageStatus === PageStatus.Ready) {
+    if (pathName.length > 0 && pathName !== "/Login" && pathName !== "/SignUp" && pageStatus === PageStatus.Ready) {
       return true;
     }
     return false;

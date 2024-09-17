@@ -1,12 +1,10 @@
 import RestaurantModel from "@/models/restaurantModels";
 import { NextRequest } from "next/server";
 import connectDB from "@/lib/db";
-export async function GET(req: NextRequest, { params }: { params: { restaurantId: string } }) {
-  console.log("get restaurantId", req);
-
+export async function GET(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
   connectDB();
 
-  const restaurantId = params.restaurantId;
+  const restaurantId = params.restaurantsId;
 
   try {
     const restaurant = await RestaurantModel.findById(restaurantId);

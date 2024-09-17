@@ -1,5 +1,4 @@
 "use client";
-
 import RestaurantWithMap from "./components/RestaurantWithMap";
 import NoReviews from "./components/NoReviews";
 import PersonalReview from "./components/PersonalReview";
@@ -30,9 +29,10 @@ const Page = () => {
       try {
         if (restaurantId) {
           const restaurantRes = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/restaurants/${restaurantId}`);
+
           setClickedRestaurant(restaurantRes.data);
 
-          const reviewRes = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/reviews/${restaurantId}`);
+          const reviewRes = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/restaurants/review/${restaurantId}`);
           setAllReviews(reviewRes.data);
           setHasReviews(reviewRes.data.length > 0);
         }
