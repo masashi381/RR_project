@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header className="bg-primary h-16 flex fixed top-0 w-full z-50">
-      {/* <HeaderLogo />
+      <HeaderLogo />
       <div className=" flex justify-center items-center">
         <SearchBar />
         {user ? (
@@ -23,8 +23,8 @@ const Header = () => {
           <Button type={BtnType.logIn} onClick={() => router.push("/Login")} className=" btn px-2">
             Log In
           </Button>
-        )} */}
-      {/* </div> */}
+        )}
+      </div>
     </header>
   );
 };

@@ -18,9 +18,11 @@ export default function Avatar() {
   const { setAllReviews } = useContext(ReviewsContext);
 
   let icon = "";
-  for (let i = 0; i < user?.user_name.length!; i++) {
-    if (i === 0) {
-      icon += user?.user_name[0].toUpperCase();
+  if (user?.user_name) {
+    for (let i = 0; i < user?.user_name.length; i++) {
+      if (i === 0) {
+        icon += user?.user_name[0].toUpperCase();
+      }
     }
   }
 

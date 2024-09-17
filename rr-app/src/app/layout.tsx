@@ -4,7 +4,7 @@ import { PageContextProvider } from "@/context/PageContext";
 import { UserContextProvider } from "@/context/UserContext";
 import { RestaurantContextProvider } from "@/context/RestaurantContext";
 import "./globals.css";
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import { DropDownContextProvider } from "@/context/DropDownContext";
 import { ReviewsContextProvider } from "@/context/ReviewsContext";
 
@@ -25,13 +25,13 @@ export default function RootLayout({
           <UserContextProvider>
             <RestaurantContextProvider>
               {/* Wrap DropDownContextProvider with Suspense */}
-              <Suspense fallback={<div>Loading Dropdown...</div>}>
-                <DropDownContextProvider>
-                  <ReviewsContextProvider>
-                    <AuthProvider>{children}</AuthProvider>
-                  </ReviewsContextProvider>
-                </DropDownContextProvider>
-              </Suspense>
+              {/* <Suspense fallback={<div>Loading Dropdown...</div>}> */}
+              <DropDownContextProvider>
+                <ReviewsContextProvider>
+                  <AuthProvider>{children}</AuthProvider>
+                </ReviewsContextProvider>
+              </DropDownContextProvider>
+              {/* </Suspense> */}
             </RestaurantContextProvider>
           </UserContextProvider>
         </PageContextProvider>

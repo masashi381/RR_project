@@ -21,14 +21,14 @@ const Login = () => {
   const getUserFromServer = (uid: string) => {
     axios
       .get(`${process.env.NEXT_PUBLIC_URL}/api/users/${uid}`)
-      .then((res: any) => {
+      .then((res) => {
         console.log("get user", res.data);
 
         setUser(res.data);
         setLoginStatus(LoginStatus.LoggedIn);
         router.replace("/Restaurants");
       })
-      .catch((error: any) => {
+      .catch(() => {
         setUser(null);
         setLoginStatus(LoginStatus.SigningUp);
       });

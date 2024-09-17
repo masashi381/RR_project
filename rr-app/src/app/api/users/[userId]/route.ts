@@ -1,7 +1,6 @@
 import connectDB from "@/lib/db";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
-// import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { userId: string } }) {
   connectDB();

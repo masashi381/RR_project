@@ -2,9 +2,9 @@ import { ReviewInput } from "@/app/api/types/type";
 import { createReview } from "@/app/logic/reviewLogic";
 import connectDB from "@/lib/db";
 import RestaurantModel from "@/models/restaurantModels";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, { params }: { params: { restaurantId: string } }, res: NextResponse) {
+export async function POST(req: NextRequest, { params }: { params: { restaurantId: string } }) {
   connectDB();
 
   const restaurantId = params.restaurantId;

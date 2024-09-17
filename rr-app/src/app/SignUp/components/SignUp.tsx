@@ -32,6 +32,7 @@ const SignUp = () => {
           setFirebaseAccount(result.user);
           setLoginStatus(LoginStatus.SigningUp);
         })
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .catch((error: any) => {
           setAlertMessage(getErrorMessage(error.code));
           console.log(error);
@@ -48,6 +49,7 @@ const SignUp = () => {
         setFirebaseAccount(result.user);
         setLoginStatus(LoginStatus.SigningUp);
       })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .catch((error: any) => {
         setFirebaseAccount(null);
         setAlertMessage(getErrorMessage(error.code));
@@ -75,7 +77,7 @@ const SignUp = () => {
 
     Object.entries(userInputObj).forEach(([key, value]) => {
       if (Array.isArray(value)) {
-        value.forEach((v, i) => {
+        value.forEach((v) => {
           //array divided to reenter formData
           formData.append(key + "[]", v);
         });
