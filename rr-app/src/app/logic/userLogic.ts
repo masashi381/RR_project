@@ -1,5 +1,5 @@
-import { UserInput } from "../types/type";
 import UserModel from "@/models/userModels";
+import { UserInput } from "../api/types/type";
 export const createUser = async (values: UserInput) => {
   const user = new UserModel(values);
   const savedUser = await user.save();

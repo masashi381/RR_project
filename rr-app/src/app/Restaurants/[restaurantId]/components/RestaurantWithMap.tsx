@@ -108,7 +108,7 @@ const RestaurantWithMap = ({ clickedRestaurant }: RestaurantWithMapProps) => {
               )
             ) : (
               <div className="text-center mt-1">
-                <Button type={BtnType.logIn} onClick={() => router.push("/login")} className="btn px-7">
+                <Button type={BtnType.logIn} onClick={() => router.push("/Login")} className="btn px-7">
                   Log In
                 </Button>
               </div>

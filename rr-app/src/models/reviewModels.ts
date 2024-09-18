@@ -30,6 +30,6 @@ const ReviewSchema = new Schema({
   },
 });
 
-const ReviewModel = mongoose.model("Review", ReviewSchema);
+const ReviewModel = mongoose.models.Review || mongoose.model("Review", ReviewSchema);
 
 export default ReviewModel;

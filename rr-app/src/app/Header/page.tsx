@@ -10,19 +10,20 @@ const Header = () => {
   const router = useRouter();
   const { user } = useContext(UserContext);
 
+  console.log("header user", user);
+
   return (
     <header className="bg-primary h-16 flex fixed top-0 w-full z-50">
       <HeaderLogo />
       <div className=" flex justify-center items-center">
-        <p>test</p>
-        {/* <SearchBar />
+        <SearchBar />
         {user ? (
           <Avatar />
         ) : (
           <Button type={BtnType.logIn} onClick={() => router.push("/Login")} className=" btn px-2">
             Log In
           </Button>
-        )} */}
+        )}
       </div>
     </header>
   );

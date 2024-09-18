@@ -1,8 +1,8 @@
-import { NextRequest } from "next/server";
+// import { NextRequest } from "next/server";
 import ReviewModel from "@/models/reviewModels";
 import connectDB from "@/lib/db";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   connectDB();
   try {
     const reviews = await ReviewModel.find();

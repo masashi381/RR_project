@@ -16,7 +16,7 @@ export default function Card({
   const clickRestaurant = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     console.log("clicked");
-    router.push(`restaurants/${_id}`);
+    router.push(`Restaurants/${_id}`);
   };
   return (
     <div onClick={clickRestaurant}>

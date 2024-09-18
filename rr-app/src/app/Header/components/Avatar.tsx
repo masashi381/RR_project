@@ -18,9 +18,11 @@ export default function Avatar() {
   const { setAllReviews } = useContext(ReviewsContext);
 
   let icon = "";
-  for (let i = 0; i < user?.user_name.length!; i++) {
-    if (i === 0) {
-      icon += user?.user_name[0].toUpperCase();
+  if (user?.user_name) {
+    for (let i = 0; i < user?.user_name.length; i++) {
+      if (i === 0) {
+        icon += user?.user_name[0].toUpperCase();
+      }
     }
   }
 
@@ -28,7 +30,7 @@ export default function Avatar() {
     setActiveTab(tabName);
     // Clear allReviews when navigating to "My Reviews" page
     setAllReviews([]);
-    router.push(`/users?tab=${tabName}`);
+    router.push(`/Users?tab=${tabName}`);
     if (dropDownRef.current) {
       dropDownRef.current.removeAttribute("open");
     }
