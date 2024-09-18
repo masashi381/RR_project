@@ -25,6 +25,7 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
 }
 
 export async function PUT(req: NextRequest, { params }: { params: { userId: string } }) {
+  connectDB();
   const userId = params.userId;
   if (!userId) {
     return new Response(null, {
@@ -51,6 +52,7 @@ export async function PUT(req: NextRequest, { params }: { params: { userId: stri
 }
 
 export async function DELETE(req: NextRequest, { params }: { params: { userId: string } }) {
+  connectDB();
   const userId = params.userId;
 
   if (!userId) {
