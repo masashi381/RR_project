@@ -20,8 +20,7 @@ const MyReviews = () => {
   useEffect(() => {
     const getReviews = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/reviews/${user?._id}`);
-        console.log("getReviews in my reviews page", res.data);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/reviews/${user?._id}`);
         setAllReviews(res.data);
       } catch (err) {
         console.log("Error fetching reviews", err);
@@ -36,7 +35,7 @@ const MyReviews = () => {
   useEffect(() => {
     const handleReviewChange = async () => {
       try {
-        const res = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/restaurants`);
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/restaurants`);
         setRestaurantsData(res.data);
       } catch (err) {
         console.log("Error handleReviewChange", err);
@@ -45,8 +44,6 @@ const MyReviews = () => {
 
     handleReviewChange();
   }, [setRestaurantsData]);
-
-  console.log("bag check restaurantsData", restaurantsData);
 
   // Get restaurant name and my review from the restaurant
   useEffect(() => {
@@ -92,7 +89,7 @@ const MyReviews = () => {
     event.preventDefault();
     const reviewId = event.currentTarget.dataset.reviewId;
     try {
-      const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/reviews/delete/${reviewId}`);
+      const res = await axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/reviews/delete/${reviewId}`);
       console.log("review deleted", res.data);
 
       setRestaurantReviews((prev) => prev.filter((review) => review.review._id !== reviewId));

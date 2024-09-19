@@ -5,6 +5,7 @@ import { createUser, validateUserInput } from "@/app/logic/userLogic";
 
 export async function POST(req: NextRequest) {
   connectDB();
+
   try {
     const userInput: UserInput = await req.json();
 

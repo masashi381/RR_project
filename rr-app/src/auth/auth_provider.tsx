@@ -11,7 +11,7 @@ import { LoginStatus } from "@/types/userTypes";
 import axios from "axios";
 import Loading from "@/app/loading";
 import NotFound from "@/app/not-found";
-import Header from "@/app/Header/components/Header";
+import Header from "@/app/Header/page";
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -28,14 +28,12 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (loginStatus !== LoginStatus.Unknown) {
         return;
       }
-      console.log("firebaseAccount", firebaseAccount?.uid);
 
       if (firebaseAccount) {
         setFirebaseAccount(firebaseAccount);
 
         try {
           const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/users/${firebaseAccount.uid}`);
-          console.log("res", res);
 
           if (res.status === 200 && res.data) {
             setUser(res.data);

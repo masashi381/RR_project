@@ -87,7 +87,7 @@ const SignUp = () => {
     });
 
     await axios
-      .post(`${process.env.NEXT_PUBLIC_URL}api/users`, formData, {
+      .post(`${process.env.NEXT_PUBLIC_URL}/api/users/register`, formData, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
@@ -103,7 +103,6 @@ const SignUp = () => {
   return (
     <div>
       <h1 className="text-3xl text-center mb-5">Sign Up</h1>
-
       {loginStatus === LoginStatus.LoggedOut && (
         //first step
         <div>

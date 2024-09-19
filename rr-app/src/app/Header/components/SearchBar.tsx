@@ -3,8 +3,6 @@ import { Input, TextType } from "@/components/common/Input";
 import { ChangeEvent, useContext } from "react";
 import { RestaurantContext } from "@/context/RestaurantContext";
 export default function SearchBar() {
-  console.log("searchBar component");
-
   const { setSearchValue } = useContext(RestaurantContext);
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);

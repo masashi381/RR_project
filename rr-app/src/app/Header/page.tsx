@@ -10,8 +10,6 @@ const Header = () => {
   const router = useRouter();
   const { user } = useContext(UserContext);
 
-  console.log("header user", user);
-
   return (
     <header className="bg-primary h-16 flex fixed top-0 w-full z-50">
       <HeaderLogo />
