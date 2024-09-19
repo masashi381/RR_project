@@ -24,8 +24,8 @@ const RestaurantWithMap = ({ clickedRestaurant }: RestaurantWithMapProps) => {
   const { hasReviews, allReviews } = useContext(ReviewsContext);
   const { updatedRestaurantData } = useContext(RestaurantContext);
 
-  const [isReview, setIsReview] = useState<Boolean>(false);
-  const [isFav, setIsFav] = useState<Boolean>(false);
+  const [isReview, setIsReview] = useState<boolean>(false);
+  const [isFav, setIsFav] = useState<boolean>(false);
 
   //Check the user has review
   useEffect(() => {

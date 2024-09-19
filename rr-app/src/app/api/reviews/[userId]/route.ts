@@ -6,7 +6,8 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
   connectDB();
   try {
     const userId = params.userId;
-    const reviews = await ReviewModel.findById(userId);
+
+    const reviews = await ReviewModel.find({ userId: userId });
     if (reviews.length > 0) {
       return new Response(JSON.stringify(reviews), {
         status: 200,
@@ -25,21 +26,3 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
     });
   }
 }
-// export const getReviewsByUserId = async (
-//   req: express.Request,
-//   res: express.Response
-// ) => {
-//   try {
-//     const userId = req.params.userId;
-//     const reviews = await reviewModels.find({ userId: userId });
-
-//     if (reviews.length > 0) {
-//       res.status(200).json(reviews);
-//     } else {
-//       res.status(404).json({ message: "No reviews found for your account" });
-//     }
-//     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-//   } catch (err: any) {
-//     console.log(err);
-//   }
-// };

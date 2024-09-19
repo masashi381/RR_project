@@ -63,7 +63,7 @@ const AddReviewModal = forwardRef<HTMLDialogElement, AddReviewModalProps>(({ mod
 
     if (user?._id) {
       try {
-        const res = await axios.post(
+        await axios.post(
           `${process.env.NEXT_PUBLIC_URL}/api/restaurants/review/${restaurantId}/new`,
           {
             review_ratings: reviewRating,

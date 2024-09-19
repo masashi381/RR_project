@@ -4,14 +4,16 @@ import connectDB from "@/lib/db";
 import RestaurantModel from "@/models/restaurantModels";
 import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, { params }: { params: { restaurantId: string } }) {
+export async function POST(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
   connectDB();
+  console.log("params: " + JSON.stringify(params));
 
-  const restaurantId = params.restaurantId;
+  const restaurantId = params.restaurantsId;
+  const reviewInput: ReviewInput = await req.json();
+  console.log("restaurantId: ", restaurantId);
+  console.log("reviewInput: ", reviewInput);
 
   try {
-    const reviewInput: ReviewInput = await req.json();
-
     const restaurant = await RestaurantModel.findById(restaurantId);
     if (!restaurant) {
       console.log("Please select a restaurant");
