@@ -5,11 +5,14 @@ import { NextRequest } from "next/server";
 
 export async function DELETE(req: NextRequest, { params }: { params: { reviewId: string } }) {
   connectDB();
+
   try {
     const reviewId = params.reviewId;
 
     //Find the restaurant containing the review
-    const restaurant = await RestaurantModel.findOne({ reviewId: reviewId });
+    const restaurant = await RestaurantModel.findOne({ reviewsId: reviewId });
+    console.log("review", restaurant);
+
     if (!restaurant) {
       return new Response(null, {
         status: 404,
@@ -45,6 +48,10 @@ export async function DELETE(req: NextRequest, { params }: { params: { reviewId:
         headers: { " Content-Type": "application/json" },
       });
     }
+    return new Response(JSON.stringify(review), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    });
   } catch (err) {
     return new Response(null, {
       status: 500,

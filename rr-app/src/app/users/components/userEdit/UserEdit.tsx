@@ -27,7 +27,7 @@ export default function UserEdit() {
       };
 
       await axios
-        .put(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${updatedUser?._id}`, updatedUser, {
+        .put(`${process.env.NEXT_PUBLIC_URL}/api/users/${updatedUser?._id}`, updatedUser, {
           headers: { "Content-Type": "application/json" },
         })
         .then((res) => {

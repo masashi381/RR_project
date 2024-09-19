@@ -19,7 +19,7 @@ const DeleteReviewModal = forwardRef<HTMLDialogElement, DeleteReviewProps>(
       event.preventDefault();
 
       try {
-        const res = await axios.delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/reviews/delete/${reviewId}`);
+        const res = await axios.delete(`${process.env.NEXT_PUBLIC_URL}/api/reviews/delete/${reviewId}`);
         console.log("review deleted", res.data);
 
         setRestaurantReviews((prev) => prev.filter((review) => review.review._id !== reviewId));
