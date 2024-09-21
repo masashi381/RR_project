@@ -1,7 +1,9 @@
 import ReviewModel from "@/models/reviewModels";
 import connectDB from "@/lib/db";
-
-export async function GET() {
+import { corsMiddleware } from "@/lib/corsMiddleware";
+import { NextRequest } from "next/server";
+export async function GET(req: NextRequest) {
+  corsMiddleware(req);
   connectDB();
   try {
     const reviews = await ReviewModel.find();

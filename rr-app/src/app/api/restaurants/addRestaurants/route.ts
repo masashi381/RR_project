@@ -2,8 +2,10 @@ import connectDB from "@/lib/db";
 import { NextRequest } from "next/server";
 import { RestaurantInput } from "../../types/type";
 import { createRestaurant } from "@/app/logic/restaurantLogic";
+import { corsMiddleware } from "@/lib/corsMiddleware";
 
 export async function POST(req: NextRequest) {
+  corsMiddleware(req);
   connectDB();
   const restaurantInput: RestaurantInput = await req.json();
 

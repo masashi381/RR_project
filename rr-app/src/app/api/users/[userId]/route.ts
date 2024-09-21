@@ -1,3 +1,4 @@
+import { corsMiddleware } from "@/lib/corsMiddleware";
 import connectDB from "@/lib/db";
 import RestaurantModel from "@/models/restaurantModels";
 import ReviewModel from "@/models/reviewModels";
@@ -5,6 +6,7 @@ import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { userId: string } }) {
+  corsMiddleware(req);
   connectDB();
   const userId = params.userId;
 
@@ -51,6 +53,7 @@ export async function PUT(req: NextRequest, { params }: { params: { userId: stri
 }
 
 export async function DELETE(req: NextRequest, { params }: { params: { userId: string } }) {
+  corsMiddleware(req);
   connectDB();
   const userId = params.userId;
 
