@@ -12,7 +12,7 @@ export function DropDownContextProviderComponent({ children }: { children: React
   const [activeTab, setActiveTab] = useState(searchParams.get("tab") || "favorite");
   const changedTabs = (tabName: string) => {
     setActiveTab(tabName);
-    router.push(`/Users?tab=${tabName}`);
+    router.push(`/users?tab=${tabName}`);
   };
 
   return (
