@@ -22,17 +22,3 @@ export async function POST(req: NextRequest) {
     });
   }
 }
-// export const addRestaurant = async (
-//   req: express.Request,
-//   res: express.Response
-// ) => {
-//   const restaurantInput: RestaurantInput = req.body;
-
-//   try {
-//     const restaurant = createRestaurant(restaurantInput);
-//     console.log("successful");
-//     return res.status(200).json(restaurant);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

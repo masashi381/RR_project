@@ -26,29 +26,3 @@ export async function GET(req: NextRequest, { params }: { params: { restaurantsI
     });
   }
 }
-
-// export const getRestaurantReviews = async (
-//   req: express.Request,
-//   res: express.Response
-// ) => {
-//   try {
-//     // Get the restaurantId from request parameters
-//     const restaurantId = req.params.restaurantId;
-
-//     // Ask DB to find review(s) which have this restaurantId
-//     const reviews: ReviewInput[] = await reviewModels
-//       .find({
-//         restaurantId,
-//       })
-//       .exec();
-
-//     if (reviews.length > 0) {
-//       res.status(200).json(reviews);
-//     } else {
-//       res.status(404).json({ message: "No reviews found for this restaurant" });
-//     }
-//   } catch (err) {
-//     console.log(err);
-//     res.status(500).json({ message: "Server error" });
-//   }
-// };

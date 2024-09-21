@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { Review } from "../../types/reviewTypes";
 import Ratings from "../Ratings";
@@ -19,15 +19,7 @@ const getIcon = (rating: number): ReactNode => {
   }
 };
 
-const ReviewDetail = ({
-  _id,
-  review_ratings,
-  review_date,
-  review_title,
-  review_description,
-  restaurantId,
-  userId,
-}: Review) => {
+const ReviewDetail = ({ _id, review_ratings, review_date, review_title, review_description }: Review) => {
   const params = useParams();
   const detailPageParams = params.restaurantId as string;
 
