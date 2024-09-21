@@ -1,10 +1,12 @@
 import { ReviewInput } from "@/app/api/types/type";
 import { createReview } from "@/app/logic/reviewLogic";
+import { corsMiddleware } from "@/lib/corsMiddleware";
 import connectDB from "@/lib/db";
 import RestaurantModel from "@/models/restaurantModels";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
+  corsMiddleware(req);
   connectDB();
   console.log("params: " + JSON.stringify(params));
 

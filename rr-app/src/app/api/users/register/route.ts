@@ -2,8 +2,10 @@ import connectDB from "@/lib/db";
 import { NextRequest } from "next/server";
 import { UserInput } from "../../types/type";
 import { createUser, validateUserInput } from "@/app/logic/userLogic";
+import { corsMiddleware } from "@/lib/corsMiddleware";
 
 export async function POST(req: NextRequest) {
+  corsMiddleware(req);
   connectDB();
 
   try {

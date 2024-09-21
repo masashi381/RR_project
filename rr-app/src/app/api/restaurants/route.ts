@@ -1,7 +1,9 @@
 import { NextRequest } from "next/server";
 import RestaurantModel from "@/models/restaurantModels";
+import { corsMiddleware } from "@/lib/corsMiddleware";
 import connectDB from "@/lib/db";
 export async function GET(req: NextRequest) {
+  corsMiddleware(req);
   connectDB();
 
   try {
@@ -30,3 +32,7 @@ export async function GET(req: NextRequest) {
     });
   }
 }
+
+// export async function OPTIONS(req: NextRequest) {
+//   return corsMiddleware(req); // Reuse the middleware for OPTIONS
+// }

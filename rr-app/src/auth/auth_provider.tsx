@@ -21,7 +21,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { user, setUser, setFirebaseAccount, loginStatus, setLoginStatus } = useContext(UserContext);
 
   useEffect(() => {
-    initializeFirebase;
+    initializeFirebase();
 
     getAuth().onAuthStateChanged(async (firebaseAccount) => {
       // Using this handler is only user access to our page

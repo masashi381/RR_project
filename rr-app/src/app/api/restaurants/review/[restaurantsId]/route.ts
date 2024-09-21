@@ -2,8 +2,10 @@ import connectDB from "@/lib/db";
 import ReviewModel from "@/models/reviewModels";
 import { NextRequest } from "next/server";
 import { ReviewInput } from "@/app/api/types/type";
+import { corsMiddleware } from "@/lib/corsMiddleware";
 
 export async function GET(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
+  corsMiddleware(req);
   connectDB();
   const restaurantId = params.restaurantsId;
   try {

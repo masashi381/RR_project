@@ -1,7 +1,10 @@
+import { corsMiddleware } from "@/lib/corsMiddleware";
 import connectDB from "@/lib/db";
 import UserModel from "@/models/userModels";
+import { NextRequest } from "next/server";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  corsMiddleware(req);
   connectDB();
 
   try {

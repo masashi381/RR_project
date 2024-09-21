@@ -1,8 +1,10 @@
+import { corsMiddleware } from "@/lib/corsMiddleware";
 import connectDB from "@/lib/db";
 import ReviewModel from "@/models/reviewModels";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { userId: string } }) {
+  corsMiddleware(req);
   connectDB();
   try {
     const userId = params.userId;

@@ -1,8 +1,10 @@
+import { corsMiddleware } from "@/lib/corsMiddleware";
 import connectDB from "@/lib/db";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest, { params }: { params: { userId: string } }) {
+  corsMiddleware(req);
   connectDB();
   const userId = params.userId;
   const { restaurantId } = await req.json();
