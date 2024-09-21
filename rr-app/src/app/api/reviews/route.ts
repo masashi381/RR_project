@@ -1,4 +1,3 @@
-// import { NextRequest } from "next/server";
 import ReviewModel from "@/models/reviewModels";
 import connectDB from "@/lib/db";
 

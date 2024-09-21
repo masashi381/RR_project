@@ -30,22 +30,3 @@ export async function POST(req: NextRequest) {
     });
   }
 }
-// xport const registerUser = async (
-//   req: express.Request,
-//   res: express.Response
-// ) => {
-//   const userInput: UserInput = req.body;
-
-//   const { result, message } = validateUserInput(userInput);
-//   if (!result) {
-//     res.status(500).send(message);
-//     return;
-//   }
-
-//   try {
-//     const user = await createUser(userInput);
-//     return res.status(200).json(user);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };

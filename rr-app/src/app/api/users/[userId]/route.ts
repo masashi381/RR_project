@@ -7,7 +7,6 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest, { params }: { params: { userId: string } }) {
   connectDB();
   const userId = params.userId;
-  // console.log("userId: " + userId);
 
   try {
     const user = await UserModel.findById(userId);

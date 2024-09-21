@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserContext } from "@/context/UserContext";
-import Image from "next/image";
 import { ReviewsContext } from "@/context/ReviewsContext";
 import axios from "axios";
 
@@ -35,7 +34,7 @@ const User = ({ uid }: Props) => {
   // icons show capital letter of user name
   let icon = "";
   if (userName) {
-    for (let i = 0; i < userName?.length!; i++) {
+    for (let i = 0; i < userName.length!; i++) {
       if (i === 0) {
         icon += userName[0].toUpperCase();
       }
