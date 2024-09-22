@@ -22,27 +22,38 @@ const SignUp = () => {
   //Alert Message
   const [alertMessage, setAlertMessage] = useState("");
 
-  //signup with email and password
+  // Helper function for basic email validation using regex
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  //signUp with email and password
   const handleEmailAuth = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Client-side validation for email format before Firebase call
+    if (!isValidEmail(email)) {
+      setAlertMessage("Please enter a valid email address.");
+      return;
+    }
+
     if (password === confirmPassword) {
-      await createUserWithEmailAndPassword(getAuth(), email, password)
-        .then((result) => {
-          setFirebaseAccount(result.user);
-          setLoginStatus(LoginStatus.SigningUp);
-        })
+      try {
+        const result = await createUserWithEmailAndPassword(getAuth(), email, password);
+        setFirebaseAccount(result.user);
+        setLoginStatus(LoginStatus.SigningUp);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .catch((error: any) => {
-          setAlertMessage(getErrorMessage(error.code));
-          console.log(error);
-        });
+      } catch (error: any) {
+        console.log(error);
+        setAlertMessage(getErrorMessage(error.code));
+      }
     } else {
       setAlertMessage("Password and Confirm Password doesn't much");
     }
   };
 
-  //signup with google account
+  //signUp with google account
   const handleGoogleAuth = async () => {
     await signInWithPopup(getAuth(), new GoogleAuthProvider())
       .then((result) => {
@@ -127,7 +138,7 @@ const SignUp = () => {
                 placeholder="Confirm password"
                 onChange={(event) => setConfirmPassword(event.target.value)}
               />
-              <Button type={BtnType.submit} className="btn btn-wide">
+              <Button type={BtnType.submit} className="btn btn-wide" isSubmit={true}>
                 Next
               </Button>
               <p className="mb-4">or</p>
@@ -150,7 +161,9 @@ const SignUp = () => {
                 placeholder="type your name"
                 onChange={(event) => setName(event.target.value)}
               />
-              <Button type={BtnType.submit}>Register</Button>
+              <Button type={BtnType.submit} isSubmit={true}>
+                Register
+              </Button>
             </div>
           </form>
         </div>

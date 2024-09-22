@@ -11,6 +11,7 @@ export enum BtnType {
 export type BtnProps = {
   type?: BtnType;
   className?: string;
+  isSubmit?: boolean;
   children: ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
@@ -45,7 +46,7 @@ export const Button = (props: BtnProps) => {
   btnClass += `${props.className ?? ""}`;
 
   return (
-    <button className={btnClass} onClick={props.onClick}>
+    <button className={btnClass} onClick={props.onClick} type={props.isSubmit ? "submit" : "button"}>
       {props.children}
     </button>
   );

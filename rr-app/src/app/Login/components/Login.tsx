@@ -34,17 +34,33 @@ const Login = () => {
       });
   };
 
+  // Helper function for basic email validation using regex
+  const isValidEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   // Login with Email and Password
   const handleEmailLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await signInWithEmailAndPassword(getAuth(), email, password)
-      .then((result) => {
-        setFirebaseAccount(result.user);
-        getUserFromServer(result.user.uid);
-      })
-      .catch((error) => {
-        setAlertMessage(getErrorMessage(error.code));
-      });
+
+    // Client-side validation for email format before Firebase call
+    if (!isValidEmail(email)) {
+      setAlertMessage("Please enter a valid email address.");
+      return;
+    }
+    try {
+      // const result = await signInWithEmailAndPassword(getAuth(), "nonexistent@email.com", "somepassword");
+
+      const result = await signInWithEmailAndPassword(getAuth(), email, password);
+      setFirebaseAccount(result.user);
+      getUserFromServer(result.user.uid);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      console.log("login error: ", error);
+
+      setAlertMessage(getErrorMessage(error.code));
+    }
   };
 
   // Google Login
@@ -63,7 +79,7 @@ const Login = () => {
     <div className="flex flex-col justify-center items-center w-80  mx-auto">
       <Image src="/rr_logo.png" width={90} height={90} alt="logo" className="mb-4" />
 
-      <p>{alertMessage}</p>
+      <p className="text-warning">{alertMessage}</p>
       <form onSubmit={handleEmailLogin} className="w-64">
         <Input
           textType={TextType.email}
@@ -77,7 +93,7 @@ const Login = () => {
           placeholder="Password"
           onChange={(event) => setPassword(event.target.value)}
         />
-        <Button type={BtnType.submit} className="btn btn-wide">
+        <Button type={BtnType.submit} className="btn btn-wide" isSubmit={true}>
           Log In
         </Button>
       </form>
