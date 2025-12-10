@@ -3,11 +3,11 @@ import connectDB from "@/lib/db";
 import ReviewModel from "@/models/reviewModels";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest, context: { params: { userId: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   corsMiddleware(req);
   connectDB();
   try {
-    const userId = context.params.userId;
+    const { userId } = await context.params;
 
     const reviews = await ReviewModel.find({ userId: userId });
     if (reviews.length > 0) {

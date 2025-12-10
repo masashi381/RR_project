@@ -5,10 +5,10 @@ import ReviewModel from "@/models/reviewModels";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest, context: { params: { userId: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  const userId = context.params.userId;
+  const { userId } = await context.params;
 
   try {
     const user = await UserModel.findById(userId);
@@ -26,9 +26,9 @@ export async function GET(req: NextRequest, context: { params: { userId: string 
   }
 }
 
-export async function PUT(req: NextRequest, context: { params: { userId: string } }) {
+export async function PUT(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   connectDB();
-  const userId = context.params.userId;
+  const { userId } = await context.params;
   if (!userId) {
     return new Response(null, {
       status: 404,
@@ -54,10 +54,10 @@ export async function PUT(req: NextRequest, context: { params: { userId: string 
   }
 }
 
-export async function DELETE(req: NextRequest, context: { params: { userId: string } }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  const userId = context.params.userId;
+  const { userId } = await context.params;
 
   if (!userId) {
     return new Response(null, {

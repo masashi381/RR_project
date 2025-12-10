@@ -5,18 +5,18 @@ import connectDB from "@/lib/db";
 import RestaurantModel from "@/models/restaurantModels";
 import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, context: { params: { restaurantsId: string } }) {
+export async function POST(req: NextRequest, context: { params: Promise<{ restaurantsId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  console.log("params: " + JSON.stringify(context.params.restaurantsId));
 
-  const restaurantId = context.params.restaurantsId;
+  const { restaurantsId } = await context.params;
+  console.log("params: " + JSON.stringify(restaurantsId));
   const reviewInput: ReviewInput = await req.json();
-  console.log("restaurantId: ", restaurantId);
+  console.log("restaurantId: ", restaurantsId);
   console.log("reviewInput: ", reviewInput);
 
   try {
-    const restaurant = await RestaurantModel.findById(restaurantId);
+    const restaurant = await RestaurantModel.findById(restaurantsId);
     if (!restaurant) {
       console.log("Please select a restaurant");
       return new Response(null, {
@@ -24,7 +24,7 @@ export async function POST(req: NextRequest, context: { params: { restaurantsId:
         headers: { "Content-Type": "application/json" },
       });
     } else {
-      const review = await createReview(reviewInput, restaurantId);
+      const review = await createReview(reviewInput, restaurantsId);
       restaurant.reviewsId.push(review._id.toString());
       //  Update the restaurant's average rating and number of reviews
       const newNumberOfReviews = restaurant.restaurant_number_reviews + 1;
