@@ -3,10 +3,10 @@ import connectDB from "@/lib/db";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function POST(req: NextRequest, context: { params: { userId: string } }) {
   corsMiddleware(req);
   connectDB();
-  const userId = params.userId;
+  const userId = context.params.userId;
   const { restaurantId } = await req.json();
 
   try {

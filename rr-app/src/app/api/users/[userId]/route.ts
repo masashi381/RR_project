@@ -5,10 +5,10 @@ import ReviewModel from "@/models/reviewModels";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function GET(req: NextRequest, context: { params: { userId: string } }) {
   corsMiddleware(req);
   connectDB();
-  const userId = params.userId;
+  const userId = context.params.userId;
 
   try {
     const user = await UserModel.findById(userId);
@@ -26,9 +26,9 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function PUT(req: NextRequest, context: { params: { userId: string } }) {
   connectDB();
-  const userId = params.userId;
+  const userId = context.params.userId;
   if (!userId) {
     return new Response(null, {
       status: 404,
@@ -54,10 +54,10 @@ export async function PUT(req: NextRequest, { params }: { params: { userId: stri
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { userId: string } }) {
   corsMiddleware(req);
   connectDB();
-  const userId = params.userId;
+  const userId = context.params.userId;
 
   if (!userId) {
     return new Response(null, {

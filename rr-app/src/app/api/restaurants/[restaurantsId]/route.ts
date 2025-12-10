@@ -2,11 +2,11 @@ import RestaurantModel from "@/models/restaurantModels";
 import { NextRequest } from "next/server";
 import connectDB from "@/lib/db";
 import { corsMiddleware } from "@/lib/corsMiddleware";
-export async function GET(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
+export async function GET(req: NextRequest, context: { params: { restaurantsId: string } }) {
   corsMiddleware(req);
   connectDB();
 
-  const restaurantId = params.restaurantsId;
+  const restaurantId = context.params.restaurantsId;
 
   try {
     const restaurant = await RestaurantModel.findById(restaurantId);

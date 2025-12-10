@@ -4,10 +4,10 @@ import { NextRequest } from "next/server";
 import { ReviewInput } from "@/app/api/types/type";
 import { corsMiddleware } from "@/lib/corsMiddleware";
 
-export async function GET(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
+export async function GET(req: NextRequest, context: { params: { restaurantsId: string } }) {
   corsMiddleware(req);
   connectDB();
-  const restaurantId = params.restaurantsId;
+  const restaurantId = context.params.restaurantsId;
   try {
     const review: ReviewInput[] = await ReviewModel.find({ restaurantId }).exec();
     if (review.length > 0) {

@@ -3,11 +3,11 @@ import RestaurantModel from "@/models/restaurantModels";
 import reviewModel from "@/models/reviewModels";
 import { NextRequest } from "next/server";
 
-export async function DELETE(req: NextRequest, { params }: { params: { reviewId: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { reviewId: string } }) {
   connectDB();
 
   try {
-    const reviewId = params.reviewId;
+    const reviewId = context.params.reviewId;
 
     //Find the restaurant containing the review
     const restaurant = await RestaurantModel.findOne({ reviewsId: reviewId });

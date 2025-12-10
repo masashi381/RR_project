@@ -5,12 +5,12 @@ import connectDB from "@/lib/db";
 import RestaurantModel from "@/models/restaurantModels";
 import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
+export async function POST(req: NextRequest, context: { params: { restaurantsId: string } }) {
   corsMiddleware(req);
   connectDB();
-  console.log("params: " + JSON.stringify(params));
+  console.log("params: " + JSON.stringify(context.params.restaurantsId));
 
-  const restaurantId = params.restaurantsId;
+  const restaurantId = context.params.restaurantsId;
   const reviewInput: ReviewInput = await req.json();
   console.log("restaurantId: ", restaurantId);
   console.log("reviewInput: ", reviewInput);
