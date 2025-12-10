@@ -8,6 +8,7 @@ const connectDB = () => {
       mongoose.connect(uri).then(() => console.log("MongoDB connection succeed"));
     }
   } catch (err) {
+    console.error("Failed to Mongo DB:", err);
     console.log("Failure: Unconnected to Mongo DB");
     throw new Error();
   }

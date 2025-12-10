@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
       });
     }
   } catch (err) {
+    console.error("Failed to user:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

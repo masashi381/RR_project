@@ -15,6 +15,7 @@ export async function GET(req: NextRequest) {
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.error("Failed to user:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

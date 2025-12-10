@@ -3,10 +3,10 @@ import connectDB from "@/lib/db";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
-export async function POST(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function POST(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  const userId = params.userId;
+  const { userId } = await context.params;
   const { restaurantId } = await req.json();
 
   try {
@@ -33,6 +33,7 @@ export async function POST(req: NextRequest, { params }: { params: { userId: str
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.error("Failed to user:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

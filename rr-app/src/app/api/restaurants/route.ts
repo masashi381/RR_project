@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.error("Failed to review:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

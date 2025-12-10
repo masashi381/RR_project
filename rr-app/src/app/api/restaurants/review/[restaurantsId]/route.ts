@@ -4,12 +4,12 @@ import { NextRequest } from "next/server";
 import { ReviewInput } from "@/app/api/types/type";
 import { corsMiddleware } from "@/lib/corsMiddleware";
 
-export async function GET(req: NextRequest, { params }: { params: { restaurantsId: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ restaurantsId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  const restaurantId = params.restaurantsId;
+  const { restaurantsId } = await context.params;
   try {
-    const review: ReviewInput[] = await ReviewModel.find({ restaurantId }).exec();
+    const review: ReviewInput[] = await ReviewModel.find({ restaurantsId }).exec();
     if (review.length > 0) {
       return new Response(JSON.stringify(review), {
         status: 200,
@@ -22,6 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: { restaurantsI
       });
     }
   } catch (err) {
+    console.error("Failed to review:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

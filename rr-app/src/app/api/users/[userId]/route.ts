@@ -5,10 +5,10 @@ import ReviewModel from "@/models/reviewModels";
 import UserModel from "@/models/userModels";
 import { NextRequest } from "next/server";
 
-export async function GET(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  const userId = params.userId;
+  const { userId } = await context.params;
 
   try {
     const user = await UserModel.findById(userId);
@@ -18,6 +18,7 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.error("Failed to user:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },
@@ -25,9 +26,9 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function PUT(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   connectDB();
-  const userId = params.userId;
+  const { userId } = await context.params;
   if (!userId) {
     return new Response(null, {
       status: 404,
@@ -44,6 +45,7 @@ export async function PUT(req: NextRequest, { params }: { params: { userId: stri
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
+      console.error("Failed to user:", err);
       return new Response(null, {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -52,10 +54,10 @@ export async function PUT(req: NextRequest, { params }: { params: { userId: stri
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { userId: string } }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ userId: string }> }) {
   corsMiddleware(req);
   connectDB();
-  const userId = params.userId;
+  const { userId } = await context.params;
 
   if (!userId) {
     return new Response(null, {
@@ -107,6 +109,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { userId: s
         });
       }
     } catch (err) {
+      console.error("Failed to user:", err);
       return new Response(null, {
         status: 500,
         headers: { "Content-Type": "application/json" },

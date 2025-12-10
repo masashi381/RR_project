@@ -8,6 +8,7 @@ export const createReview = async (values: ReviewInput, restaurantId: string) =>
     const review = await new reviewModels(reviewWithRestaurantId).save();
     return review.toObject();
   } catch (err) {
+    console.error("Failed to review:", err);
     throw new Error("Failed to create review");
   }
 };

@@ -3,11 +3,11 @@ import RestaurantModel from "@/models/restaurantModels";
 import reviewModel from "@/models/reviewModels";
 import { NextRequest } from "next/server";
 
-export async function DELETE(req: NextRequest, { params }: { params: { reviewId: string } }) {
+export async function DELETE(req: NextRequest, context: { params: Promise<{ reviewId: string }> }) {
   connectDB();
 
   try {
-    const reviewId = params.reviewId;
+    const { reviewId } = await context.params;
 
     //Find the restaurant containing the review
     const restaurant = await RestaurantModel.findOne({ reviewsId: reviewId });
@@ -53,6 +53,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { reviewId:
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    console.error("Failed to review:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },
