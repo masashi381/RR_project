@@ -42,6 +42,7 @@ export async function POST(req: NextRequest, { params }: { params: { restaurants
       });
     }
   } catch (err) {
+    console.error("Failed to review:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

@@ -22,6 +22,7 @@ export async function GET(req: NextRequest, { params }: { params: { restaurantsI
       });
     }
   } catch (err) {
+    console.error("Failed to review:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

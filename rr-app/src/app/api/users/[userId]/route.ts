@@ -18,6 +18,7 @@ export async function GET(req: NextRequest, { params }: { params: { userId: stri
     });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
+    console.error("Failed to user:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },
@@ -44,6 +45,7 @@ export async function PUT(req: NextRequest, { params }: { params: { userId: stri
         headers: { "Content-Type": "application/json" },
       });
     } catch (err) {
+      console.error("Failed to user:", err);
       return new Response(null, {
         status: 500,
         headers: { "Content-Type": "application/json" },
@@ -107,6 +109,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { userId: s
         });
       }
     } catch (err) {
+      console.error("Failed to user:", err);
       return new Response(null, {
         status: 500,
         headers: { "Content-Type": "application/json" },

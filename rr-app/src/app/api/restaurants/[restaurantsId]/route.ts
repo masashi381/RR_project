@@ -16,6 +16,7 @@ export async function GET(req: NextRequest, { params }: { params: { restaurantsI
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    console.error("Failed to fetch restaurant:", error);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

@@ -18,6 +18,7 @@ export async function POST(req: NextRequest) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    console.error("Failed to fetch restaurant:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },

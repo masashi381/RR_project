@@ -53,6 +53,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { reviewId:
       headers: { "Content-Type": "application/json" },
     });
   } catch (err) {
+    console.error("Failed to review:", err);
     return new Response(null, {
       status: 500,
       headers: { "Content-Type": "application/json" },
