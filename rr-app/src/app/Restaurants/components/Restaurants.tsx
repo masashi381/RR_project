@@ -21,28 +21,8 @@ const Restaurants = () => {
   // when click on different page, set to that page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  // const registeredFav = async (e: React.MouseEvent<HTMLElement>) => {
-  //   e.preventDefault();
-  //   console.log("clicked");
-  //   setIsFav(!isFav);
-  // if (!clickedRestaurant) return;
-
-  // try {
-  //   const response = await axios.post(
-  //     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${user?._id}/favorite`,
-  //     { restaurantId: clickedRestaurant?._id },
-  //     {
-  //       headers: { Accept: "application/json" },
-  //     }
-  //   );
-  //   setUser(response.data);
-  //   setIsFav(!isFav);
-  // } catch (error) {
-  //   console.error("Error updating favorite restaurant:", error);
-  // }
-  // };
   return (
-    <div className="bg-accent h-screen mt-16">
+    <div data-theme="mytheme" className="bg-accent h-screen mt-16">
       <div className="flex flex-wrap w-full justify-around pt-16 bg-accent">
         {currentRestaurants &&
           currentRestaurants.map((restaurant: Restaurant, index: number) => (

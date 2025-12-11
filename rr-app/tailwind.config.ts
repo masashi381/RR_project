@@ -19,6 +19,7 @@ const config: Config = {
     themes: [
       {
         mytheme: {
+          "color-scheme": "light",
           primary: "#15616D", // main color green
           secondary: "#FED766", // sub color yellow
           accent: "#EFF1F3", // base color gray
