@@ -1,5 +1,8 @@
-import type { Config } from "tailwindcss";
+// @ts-nocheck
 import daisyui from "daisyui";
+
+/** @type {import('tailwindcss').Config} */
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -19,6 +22,7 @@ const config: Config = {
     themes: [
       {
         mytheme: {
+          "color-scheme": "light",
           primary: "#15616D", // main color green
           secondary: "#FED766", // sub color yellow
           accent: "#EFF1F3", // base color gray
@@ -30,4 +34,5 @@ const config: Config = {
     ],
   },
 };
+
 export default config;

@@ -11,7 +11,7 @@ const Header = () => {
   const { user } = useContext(UserContext);
 
   return (
-    <header className="bg-primary h-16 flex fixed top-0 w-full z-50">
+    <header data-theme="mytheme" className="bg-primary h-16 flex fixed top-0 w-full z-50">
       <HeaderLogo />
       <div className=" flex justify-center items-center">
         <SearchBar />
